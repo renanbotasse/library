@@ -19,24 +19,38 @@ exports.all = function (req, res, next) {
     .catch(next);
 };
 
-//GET - Get one book by various criteria
+// GET - Get one book by a specific query parameter (e.g., title, author, year, or pages)
 exports.oneBook = function (req, res, next) {
-  // The empty query object
-  const queryParam = req.query.param;
-
+  // Initialize an empty query object
   const query = {};
-  query[queryParam] = req.query[queryParam];
+
+  // Iterate through the valid query parameters
+  ["title", "author", "year", "pages"].forEach((param) => {
+    // Check if the query parameter is provided and has a non-empty value
+    if (req.query[param]) {
+      query[param] = req.query[param];
+    }
+  });
+
+  // Check if there are any valid query parameters
+  if (Object.keys(query).length === 0) {
+    return res.status(400).json({ error: "No valid query parameters provided" });
+  }
+
+  // Search for books based on the specified query parameters and values
   Book.find(query)
     .then(function (books) {
       if (!books || books.length === 0) {
         res.status(404).json({ error: "Books not found" });
       } else {
-        res.status(200).json(books); // Return an array of matching books
+        res.render("readView", { books: books }); // Render the view with matching books
       }
     })
     .catch(next);
 };
-
+  
+  
+  
 //POST - Create a book
 exports.create = function (req, res, next) {
   //create a new book on the DB and return it
