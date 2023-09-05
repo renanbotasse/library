@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>readBook</title>
 </head>
+
 <body>
   <h2>readBook<h2>
-  <table border="1">
-    <thead>
-      <tr>
-        <td>TITLE</td>
-        <td>AUTHOR</td>
-        <td>YEAR</td>
-        <td>PAGES</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% books.forEach(function(data) { %>
-        <tr>
-          <td><%= data.title %></td>
-          <td><%= data.author %></td>
-          <td><%= data.year %></td>
-          <td><%= data.pages %></td>
-        </tr>
-     <% }) %>
-   </tbody>
-   <button><a href="/">Back</a></button>
-</body>
+      <table border="1">
+        <thead>
+          <tr>
+            <td>TITLE</td>
+            <td>AUTHOR</td>
+            <td>YEAR</td>
+            <td>PAGES</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% books.forEach(function(data) { %>
+            <tr>
+              <td>
+                <%= data.title %>
+              </td>
+              <td>
+                <%= data.author %>
+              </td>
+              <td>
+                <%= data.year %>
+              </td>
+              <td>
+                <%= data.pages %>
+              </td>
+              <td>
+                <a href="/library/edit/<%= data._id %>">Edit</a> |
+                <a href="/library/delete/<%= data._id %>">Delete</a> |
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+        <button><a href="/">Back</a></button>
+
+
 </html>

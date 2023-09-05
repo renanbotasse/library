@@ -1,8 +1,12 @@
 // import bookModel from libraryModel
 const Book = require("../models/libraryModel");
 
-exports.test = function (req, res) {
+exports.newBook = function (req, res) {
   res.render("createBook");
+};
+
+exports.find = function (req, res) {
+  res.render("findBook");
 };
 
 // GET - List all books (MY-LIBRARY)
@@ -18,25 +22,16 @@ exports.all = function (req, res, next) {
 //GET - Get one book by various criteria
 exports.oneBook = function (req, res, next) {
   // The empty query object
-  let query = {};
+  const queryParam = req.query.param;
 
-  // Array of valid query parameters
-  const validParams = ["id", "title", "author", "year", "pages"];
-
-  // Valid query parameters
-  validParams.forEach((param) => {
-    if (req.query[param]) {
-      query[param] = req.query[param];
-    }
-  });
-
-  //Use the query to find the book
+  const query = {};
+  query[queryParam] = req.query[queryParam];
   Book.find(query)
-    .then(function (book) {
-      if (!book) {
-        res.status(404).json({ error: "Book not found" });
+    .then(function (books) {
+      if (!books || books.length === 0) {
+        res.status(404).json({ error: "Books not found" });
       } else {
-        res.status(200).json(book);
+        res.status(200).json(books); // Return an array of matching books
       }
     })
     .catch(next);
@@ -60,7 +55,16 @@ exports.create = function (req, res, next) {
   //Create the new Book in the DB
   Book.create(data)
     .then(function (book) {
-      res.redirect('/library/readAllBooks');
+      res.redirect("/library/read");
+    })
+    .catch(next);
+};
+
+//GET - Edit a book
+exports.edit = function (req, res, next) {
+  Book.findOne({ _id: req.params.id })
+    .then(function (book) {
+      res.render("editBook", { book: book });
     })
     .catch(next);
 };
@@ -72,20 +76,23 @@ exports.update = function (req, res, next) {
     //Find the book by ID again and return the book updated
     .then(function () {
       Book.findOne({ _id: req.params.id }).then(function (book) {
-        res.send(book);
+        res.redirect("/library/read");
       });
     })
     .catch(next);
 };
 
 //DELETE - Delete a book
+// DELETE - Delete a book
+// DELETE - Delete a book
 exports.delete = function (req, res, next) {
-  //'_id' = id inside DB || 'req.params.id'= return ID
+  // '_id' = id inside DB || 'req.params.id' = return ID
   // You can use the model Book (mongoose) to delete, don't need to create a newBook
-  // The findByIdAndRemove works with mongoose
-  Book.findByIdAndRemove({ _id: req.params.id })
+  // The findOneAndDelete works with mongoose
+  Book.findOneAndDelete({ _id: req.params.id })
     .then(function (book) {
-      res.send(book);
+      console.log("Registo eliminado com sucesso!"); // Logging the success message
+      res.redirect("/library/read"); // Redirecting to the "/library/read" page
     })
     .catch(next);
 };

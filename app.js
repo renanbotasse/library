@@ -47,7 +47,7 @@ const routes = require("./routes/libraryRoute");
 app.use("/library", routes);
 
 app.get("/", (req, res) => {
-	res.render('createBook');
+	res.render('homelibrary');
 });
 
 //error handler for middleware
