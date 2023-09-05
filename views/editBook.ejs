@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Book</title>
+</head>
+<body>
+<h2>Edit Book</h2>
+  <form action="/library/update/<%= book._id %>" method="POST">
+    <input type="text" value="<%= book.title %>" placeholder=TITLE name="title">
+    <input type="text" value="<%= book.author %>" placeholder=AUTHOR name="author">
+    <input type="number" value="<%= book.year %>" placeholder=YEAR name="year">
+    <input type="number" value="<%= book.pages %>" placeholder=PAGES name="pages">
+    <br />
+    <button><a href="/library/read">List All</a></button>
+    <button type="submit">Edit</button>
+  </form>
+</body>
+</html>
