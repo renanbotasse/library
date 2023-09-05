@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>readBook</title>
+</head>
+<body>
+  <h2>readBook<h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <td>TITLE</td>
+        <td>AUTHOR</td>
+        <td>YEAR</td>
+        <td>YEAR</td>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% pis.forEach(function(data) { %>
+        <tr>
+          <td><%= data.name %></td>
+          <td><%= data.details %></td>
+          <td><%= data.status %></td>
+        </tr>
+     <% }) %>
+   </tbody>
+   <button><a href="/">Back</a></button>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE <html>
+<html lang=”en”>
+<head>
+  <meta charset=”UTF-8">
+  <title>TESTE</title>
+  <link rel=”stylesheet” type=”text/css”
+    href=”/assets/colocoAquiMeu.css”>
+</head>
+<body>
+  <h2>Criar Ponto Interesse<h2>
+  <%# "/api/interest"-> rota de criação de novo registo %>
+  <form action=”/api/interest” method=”POST”>
+    <input type=”text” placeholder=title" name=”title">
+    <input type=”text” placeholder=”author" name="author">
+    <input type=”text” placeholder=”longitude" name=”lng">
+    <input type="text" placeholder="latitude" name="lat">
+    <button type=”submit”>Submit</button>
+  </form>
+</body>
+</html>

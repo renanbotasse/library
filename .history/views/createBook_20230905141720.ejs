@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Library</title>
+</head>
+<body>
+	<h2>Add a New Book<h2>
+		<%# "/api/interest"-> rota de criação de novo registo %>
+		<form action=”/api/interest” method=”POST”>
+		  <input type=”text” placeholder=Title name=title">
+		  <input type=”text” placeholder=Author name=”details">
+		  <input type=”text” placeholder=”longitude name=”lng">
+		  <input type="text" placeholder=latitude name="lat">
+		  <button type=”submit”>Submit</button>
+		</form>
+
+  <h2>My Library<h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <td>Title</td>
+        <td>Author</td>
+        <td>Year</td>
+		<td>Pages</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% books.forEach(function(data) { %>
+        <tr>
+          <td><%= data.title %></td>
+          <td><%= data.author %></td>
+          <td><%= data.year %></td>
+		  <td><%= data.pages %></td>
+        </tr>
+     <% }) %>
+   </tbody>
+   <button><a href="/">Back</a></button>
+</body>
+</html>
