@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista PIs</title>
+</head>
+<body>
+  <h2>Lista de Pontos de Interesse<h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Details</td>
+        <td>Status</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% books.forEach(function(data) { %>
+        <tr>
+          <td><%= data.name %></td>
+          <td><%= data.details %></td>
+          <td><%= data.status %></td>
+        </tr>
+     <% }) %>
+   </tbody>
+   <button><a href="/">Back</a></button>
+</body>
+</html>
