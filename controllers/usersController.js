@@ -1,8 +1,35 @@
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
+
+//Model User
 const User = require("../models/user");
 
+// POSTlogin
+exports.POSTlogin = function (req, res, next) {
+  passport.authenticate("local", {
+    successRedirect: "/library/home",
+    failureRedirect: "/users/login",
+  })(req, res, next);
+};
+
+// logout
+exports.logout = function (req, res) {
+	req.logout(function(err) {
+	  if (err) {
+		// Handle any errors that occur during logout
+		console.error(err);
+	  }
+	  req.flash("success", "You are logged out");
+	  res.redirect("/users/login");
+	});
+  };
+
+exports.GETdashboard = function (req, res) {
+  res.render("dashboard");
+};
+
 // Render the login page
-exports.login = function (req, res) {
+exports.GETlogin = function (req, res) {
   res.render("login");
 };
 
@@ -77,11 +104,4 @@ exports.POSTregister = function (req, res) {
       }
     });
   }
-};
-
-// Handle user logout
-exports.logout = function (req, res) {
-  req.logout();
-  req.flash("success", "You are logged out");
-  res.redirect("/users/login");
 };

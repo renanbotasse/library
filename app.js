@@ -7,11 +7,15 @@ const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
 
+
 // Config .env file
 dotenv.config();
 
 // Start express
 const app = express();
+
+// Passaport configuration
+require('./config/passport')(passport);
 
 // MongoDB connection
 let mongoDB =
@@ -64,6 +68,10 @@ app.use(
   })
 );
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Connect flash middleware
 app.use(flash());
 
@@ -76,9 +84,7 @@ const index = require("./routes/index");
 app.use("/users", users);
 app.use("/", index);
 
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 // Global variables middleware for flash messages
 app.use(function (req, res, next) {
