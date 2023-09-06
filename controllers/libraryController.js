@@ -9,6 +9,10 @@ exports.find = function (req, res) {
   res.render("findBook");
 };
 
+exports.homeLibrary = function (req, res) {
+  res.render("homeLibrary");
+};
+
 // GET - List all books (MY-LIBRARY)
 exports.all = function (req, res, next) {
   //find() call all the books in the DB and res.send(book) send all books back
@@ -48,9 +52,7 @@ exports.oneBook = function (req, res, next) {
     })
     .catch(next);
 };
-  
-  
-  
+
 //POST - Create a book
 exports.create = function (req, res, next) {
   //create a new book on the DB and return it
