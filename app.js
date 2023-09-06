@@ -1,25 +1,19 @@
-//link express
+// link express
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const expressLayouts = require('express-ejs-layouts');
-const passport = require('passport');
-const flash = require('connect-flash');
-const session = require('express-session');
+const expressLayouts = require("express-ejs-layouts");
+const passport = require("passport");
+const flash = require("connect-flash");
+const session = require("express-session");
 
 // Config .env file
 dotenv.config();
 
-//start express
+// Start express
 const app = express();
 
-// Config ejs (view engine)
-app.set("view engine", "ejs");
-
-// Create client static files (/public/assets)
-app.use(express.static("public"));
-
-//MongoDB connection
+// MongoDB connection
 let mongoDB =
   "mongodb+srv://" +
   process.env.DB_USER +
@@ -28,45 +22,76 @@ let mongoDB =
   "@cluster0.7796qkc.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(mongoDB);
 
-//MongoDB connection Confirmation
+// MongoDB connection Confirmation
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
 });
 
-//MongoDB connection Error
+// MongoDB connection Error
 mongoose.connection.on("error", (err) => {
-  console.log("Database Error" + err);
+  console.log("Database Error: " + err);
 });
 
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 
-//MIDDLEWARE START----------------------------------------------------------------
-//active json parser
+// Middleware for parsing JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//valid end point - start with /library
-const routes = require("./routes/libraryRoute");
-app.use("/library", routes);
+// Define '/views/layout' as main-layout (rendered in the root)
+app.use(expressLayouts);
 
-app.get("/library", (req, res) => {
-	res.render('homelibrary');
-});
+// Configure EJS as the view engine
+app.set("view engine", "ejs");
 
-//error handler for middleware
+// Serve static files from the 'public' directory
+app.use(express.static("public"));
+
+// Error handler for middleware
 app.use(function (err, req, res, next) {
-  console.log(err);
-  //Change the status (res.status(422)
+  console.error(err);
+  // Change the status (res.status(422))
   res.status(422).send({ error: err.message });
 });
 
-//MIDDLEWARE END-------------------------------------------------------------------
+// Session middleware
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
-//create server port
+// Connect flash middleware
+app.use(flash());
+
+// Valid endpoint - starting with /library
+const libraryRoute = require("./routes/libraryRoute");
+app.use("/library", libraryRoute);
+
+const users = require("./routes/users");
+const index = require("./routes/index");
+app.use("/users", users);
+app.use("/", index);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Global variables middleware for flash messages
+app.use(function (req, res, next) {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.errorPassport = req.flash("errorPassport");
+  next();
+});
+
+// Create server port
 let port = 8000;
 
-//start server
+// Start server
 app.listen(process.env.PORT || port, () => {
-  console.log("Server running on port" + port);
+  console.log("Server running on port " + port);
 });

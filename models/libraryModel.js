@@ -5,19 +5,19 @@ const Schema = mongoose.Schema;
 const bookSchema = new Schema({
   title: {
     type: String,
-    required: [true, 'NEED TITLE']
+    required: [true, "NEED TITLE"],
   },
   author: {
     type: String,
-    required: [true, 'NEED AUTHOR']
+    required: [true, "NEED AUTHOR"],
   },
   year: {
     type: Number,
-    required: [true, 'NEED YEAR']
+    required: [true, "NEED YEAR"],
   },
   pages: {
     type: Number,
-    required: [true, 'NEED NUMBER OF PAGES']
+    required: [true, "NEED NUMBER OF PAGES"],
   },
 });
 
