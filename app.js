@@ -2,6 +2,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const expressLayouts = require('express-ejs-layouts');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 // Config .env file
 dotenv.config();
@@ -46,7 +50,7 @@ app.use(express.urlencoded({ extended: true }));
 const routes = require("./routes/libraryRoute");
 app.use("/library", routes);
 
-app.get("/", (req, res) => {
+app.get("/library", (req, res) => {
 	res.render('homelibrary');
 });
 
