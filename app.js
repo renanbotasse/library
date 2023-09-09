@@ -51,6 +51,7 @@ app.set("view engine", "ejs");
 
 // Serve static files from the 'public' directory
 app.use(express.static("public"));
+app.use(express.static("public/img"));
 
 // Error handler for middleware
 app.use(function (err, req, res, next) {

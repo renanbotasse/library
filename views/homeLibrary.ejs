@@ -1,29 +1,48 @@
-<!DOCTYPE <html>
-<html lang=”en”>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset=”UTF-8">
+  <meta charset="UTF-8">
   <title>Home Library</title>
-  <link rel=”stylesheet” type=”text/css” href=”/assets/styles.css”>
+  <link rel="stylesheet" type="text/css" href="/assets/librarystyle.css">
 </head>
 
-<body>
-  <h2>Welcome to your Home Library<h2>
-      <div>
-        <a href="/library/newBook">
-          <button type="button">ADD A NEW BOOK</button>
-        </a>
+<body class="body-books">
+  <div class="row mt-5">
+    <div class="col-md m-auto">
+      <div class="card card-body">
+        <h2>Welcome to your Home Library  
+        </h2>
+        <div class="home-library">
+          <img src="/img/home-library.webp"/>
+        </div>
+
+        <!-- Buttons in the same row -->
+        <div class="row">
+          <!-- Button 1 -->
+          <div class="col-md mb-3">
+            <a href="/library/newBook">
+              <button type="button" class="btn btn-outline-dark btn-lg btn-block">ADD A NEW BOOK</button>
+            </a>
+          </div>
+
+          <!-- Button 2 -->
+          <div class="col-md mb-3">
+            <a href="/library/read">
+              <button type="button" class="btn btn-outline-dark btn-lg btn-block">YOUR LIBRARY</button>
+            </a>
+          </div>
+
+          <!-- Button 3 -->
+          <div class="col-md mb-3">
+            <a href="/library/find">
+              <button type="button" class="btn btn-outline-dark btn-lg btn-block">FIND A BOOK</button>
+            </a>
+          </div>
+        </div>
       </div>
-      <div>
-        <a href="/library/read">
-          <button type="button">YOUR LIBRARY</button>
-        </a>
-      </div>
-      <div>
-        <a href="/library/find">
-          <button type="button">FIND A BOOK</button>
-        </a>
-      </div>
+    </div>
+  </div>
 </body>
 
 </html>

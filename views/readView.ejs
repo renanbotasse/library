@@ -3,43 +3,79 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>readBook</title>
+  <title>Library - All Books</title>
+  <link rel="stylesheet" type="text/css" href="/assets/librarystyle.css">
 </head>
 
-<body>
-  <h2>readBook<h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <td>TITLE</td>
-            <td>AUTHOR</td>
-            <td>YEAR</td>
-            <td>PAGES</td>
-          </tr>
-        </thead>
-        <tbody>
-          <% books.forEach(function(data) { %>
-            <tr>
-              <td>
-                <%= data.title %>
-              </td>
-              <td>
-                <%= data.author %>
-              </td>
-              <td>
-                <%= data.year %>
-              </td>
-              <td>
-                <%= data.pages %>
-              </td>
-              <td>
-                <a href="/library/edit/<%= data._id %>">Edit</a> |
-                <a href="/library/delete/<%= data._id %>">Delete</a> |
-              </td>
-            </tr>
-            <% }) %>
-        </tbody>
-        <button><a href="/library">Back</a></button>
+<body class="body-books">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-body">
+          <h2 class="text-center">ALL MY BOOKS</h2>
+          <table class="table table-bordered table-responsive">
+            <thead>
+              <tr>
+                <th>TITLE</th>
+                <th>AUTHOR</th>
+                <th>YEAR</th>
+                <th>PAGES</th>
+                <th>EDIT/DELETE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% books.forEach(function(data) { %>
+                <tr>
+                  <td>
+                    <%= data.title %>
+                  </td>
+                  <td>
+                    <%= data.author %>
+                  </td>
+                  <td>
+                    <%= data.year %>
+                  </td>
+                  <td>
+                    <%= data.pages %>
+                  </td>
+                  <td>
+                    <a href="/library/edit/<%= data._id %>">Edit</a> or
+                    <a href="/library/delete/<%= data._id %>">Delete</a>
+                  </td>
+                </tr>
+                <% }) %>
+            </tbody>
 
+          </table>
+          <div class="row">
+            <!-- Button 1 -->
+            <div class="col-md mb-3">
+              <a href="/library/newBook">
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block">ADD A NEW BOOK</button>
+              </a>
+            </div>
+
+            <!-- Button 2 -->
+            <div class="col-md mb-3">
+              <a href="/library/home">
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block">BACK</button>
+              </a>
+            </div>
+
+            <!-- Button 3 -->
+            <div class="col-md mb-3">
+              <a href="/library/find">
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block">FIND A BOOK</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</body>
 
 </html>

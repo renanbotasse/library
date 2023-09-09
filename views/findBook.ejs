@@ -1,24 +1,37 @@
-<!DOCTYPE <html>
-<html lang=”en”>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset=”UTF-8">
-  <title>createBook</title>
-  <link rel=”stylesheet” type=”text/css” href=”/assets/colocoAquiMeu.css”>
+  <meta charset="UTF-8">
+  <title>Library - Find a Book</title>
+  <link rel="stylesheet" type="text/css" href="/assets/librarystyle.css">
 </head>
 
-<body>
-  <h2>FIND A BOOK<h2>
-      <%# "/library/createBook" -> ADD A NEW BOOK (create) %>
-        <form action=/library/oneBook method=GET>
-          <input type=text placeholder=TITLE name=title>
-          <input type=text placeholder=AUTHOR name=author>
-          <input type=number placeholder=YEAR name=year>
-          <input type=number placeholder=PAGES name=pages>
-          <button type=”submit”>SUBMIT</button>
-          <button><a href="/library/read">List All</a></button>
-          <button><a href="/library">Back</a></button>
+<body class="body-books">
+  <div class="row mt-5">
+    <div class="col-md m-auto">
+      <div class="card card-body">
+        <h2>FIND A BOOK</h2>
+        <div class="col-md mb-3">
+          <form action=/library/oneBook method=GET>
+            <input type=text placeholder=TITLE name=title>
+            <input type=text placeholder=AUTHOR name=author>
+            <input type=number placeholder=YEAR name=year>
+            <input type=number placeholder=PAGES name=pages>
+        </div>
+        <div class="col-md mb-3">
+        <button type=”submit” class="btn btn-outline-dark btn-lg btn-block">SUBMIT</button>
+          </div>
         </form>
+        <div class="col-md mb-3">
+          <button class="btn btn-outline-dark btn-lg btn-block"><a href="/library/read">LIST ALL</a></button>
+        </div>
+        <div class="col-md mb-3">
+          <button class="btn btn-outline-dark btn-lg btn-block"><a href="/library/home">BACK</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
