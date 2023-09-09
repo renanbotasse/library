@@ -3,20 +3,35 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Edit Book</title>
+  <title>Library - Edit Book</title>
+  <link rel="stylesheet" type="text/css" href="/assets/librarystyle.css">
 </head>
 
-<body>
-  <h2>Edit Book</h2>
-  <form action="/library/update/<%= book._id %>" method="POST">
-    <input type="text" value="<%= book.title %>" placeholder=TITLE name="title">
+<body class="body-books">
+  <div class="row mt-5">
+    <div class="col-md m-auto">
+      <div class="card card-body">
+        <h2>EDIT BOOK</h2>
+        <div class="col-md mb-3">
+          <form action="/library/update/<%= book._id %>" method="POST">
+          <input type="text" value="<%= book.title %>" placeholder=TITLE name="title">
     <input type="text" value="<%= book.author %>" placeholder=AUTHOR name="author">
     <input type="number" value="<%= book.year %>" placeholder=YEAR name="year">
     <input type="number" value="<%= book.pages %>" placeholder=PAGES name="pages">
-    <br />
-    <button><a href="/library/read">List All</a></button>
-    <button type="submit">Edit</button>
-  </form>
+        </div>
+          <div class="col-md mb-3">
+            <button type=”submit” class="btn btn-outline-dark btn-lg btn-block">EDIT</button>
+          </div>
+        </form>
+        <div class="col-md mb-3">
+          <button class="btn btn-outline-dark btn-lg btn-block"><a href="/library/read">LIST ALL</a></button>
+        </div>
+        <div class="col-md mb-3">
+          <button class="btn btn-outline-dark btn-lg btn-block"><a href="/library/home">BACK</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
