@@ -9,7 +9,9 @@ exports.POSTlogin = function (req, res, next) {
   passport.authenticate("local", {
     successRedirect: "/library/home",
     failureRedirect: "/users/login",
+    failureFlash: true
   })(req, res, next);
+  
 };
 
 // logout

@@ -11,11 +11,9 @@ module.exports = function (passport) {
       // Does the email match?
       User.findOne({ email: email }).then((user) => {
         if (!user) {
-          // 'done' callback (received above)
           return done(null, false, { message: "Unregistered email" });
         }
         // Do the password and email match?
-        // bcrypt decrypts the stored password and compares it with the entered password
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {

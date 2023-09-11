@@ -89,11 +89,14 @@ app.use("/", index);
 
 // Global variables middleware for flash messages
 app.use(function (req, res, next) {
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  res.locals.errorPassport = req.flash("errorPassport");
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
   next();
 });
+
+// Routes and other middleware
+
 
 // Create server port
 let port = 8000;
