@@ -1,19 +1,22 @@
 const express = require("express");
 const router = express.Router();
-// importa controlador: 'usersController'
+
+// import controller 'usersController'
 const usersController = require("../controllers/usersController");
-// render da Login-Page
+
+// render  Login-Page
 router.get("/login", usersController.GETlogin);
-// render da Register-Page
+
+// render  Register-Page
 router.get("/register", usersController.GETregister);
-// registo na BD
+
+// register in BD
 router.post("/register", usersController.POSTregister);
+
 // render Post to Login
 router.post("/login", usersController.POSTlogin);
 
 // logout
-router.get('/logout', usersController.logout);
-
-router.get("/dashboard", usersController.GETdashboard);
+router.get("/logout", usersController.logout);
 
 module.exports = router;
