@@ -38,14 +38,14 @@ exports.oneBook = function (req, res, next) {
 
   // Check if there are any valid query parameters
   if (Object.keys(query).length === 0) {
-    return res.status(400).json({ error: "No valid query parameters provided" });
+    return res.render("findBook");
   }
 
   // Search for books based on the specified query parameters and values
   Book.find(query)
     .then(function (books) {
       if (!books || books.length === 0) {
-        res.status(404).json({ error: "Books not found" });
+        res.render("findBook");
       } else {
         res.render("readView", { books: books }); // Render the view with matching books
       }
@@ -54,26 +54,73 @@ exports.oneBook = function (req, res, next) {
 };
 
 //POST - Create a book
-exports.create = function (req, res, next) {
-  //create a new book on the DB and return it
-  //Start the variables with req.body
+exports.create = function (req, res) {
+  // Extract data from the request body
   let title = req.body.title;
   let author = req.body.author;
   let year = req.body.year;
   let pages = req.body.pages;
-  //Create a variable with the model Book (mongoose)
-  let data = {
-    title: title,
-    author: author,
-    year: year,
-    pages: pages,
-  };
-  //Create the new Book in the DB
-  Book.create(data)
-    .then(function (book) {
-      res.redirect("/library/read");
-    })
-    .catch(next);
+
+  // Error variable
+  let errors = [];
+
+  // Check if all fields are filled
+  if (!title || !author || !year || !pages) {
+    errors.push({ msg: "Please enter all fields" });
+  }
+
+  // If there are errors, render the createBook page with errors
+  if (errors.length > 0) {
+    res.render("createBook", {
+      errors,
+      title,
+      author,
+      year,
+      pages,
+    });
+  } else {
+    // Check if the book already exists
+    Book.findOne({ title: title }).then((existingBook) => {
+      if (existingBook) {
+        errors.push({ msg: "Book already exists" });
+        res.render("createBook", {
+          errors,
+          title,
+          author,
+          year,
+          pages,
+        });
+      } else {
+        // Create a new book
+        const newBook = new Book({
+          title,
+          author,
+          year,
+          pages,
+        });
+
+        // Save the new book to the database
+        newBook
+          .save()
+          .then((book) => {
+            // Redirect to the appropriate page or show a success message
+            // For example, you can redirect to the book's details page
+            res.redirect("/library/read");
+          })
+          .catch((err) => {
+            console.log(err);
+            // Handle the error appropriately
+            res.render("createBook", {
+              errors,
+              title,
+              author,
+              year,
+              pages,
+            });
+          });
+      }
+    });
+  }
 };
 
 //GET - Edit a book
@@ -85,18 +132,37 @@ exports.edit = function (req, res, next) {
     .catch(next);
 };
 
-//PUT - Update a book
+// PUT - Update a book
 exports.update = function (req, res, next) {
-  //Find by ID and use the req.body to update
+  // Extract the updated book details from the request body
+  const { title, author, year, pages } = req.body;
+
+  // Check if any of the fields are empty
+  if (!title || !author || !year || !pages) {
+    // Render the edit page again with the existing book details and an error message
+    return Book.findById(req.params.id)
+      .then(function (book) {
+        res.render("editBook", {
+          book: book,
+          error: "All fields must be filled.",
+        });
+      })
+      .catch(next);
+  }
+
+  // Find and update the book by ID
   Book.findByIdAndUpdate({ _id: req.params.id }, req.body)
-    //Find the book by ID again and return the book updated
     .then(function () {
-      Book.findOne({ _id: req.params.id }).then(function (book) {
-        res.redirect("/library/read");
-      });
+      // Find the updated book by ID and return the book updated
+      Book.findById(req.params.id)
+        .then(function (book) {
+          res.redirect("/library/read");
+        })
+        .catch(next);
     })
     .catch(next);
 };
+
 
 //DELETE - Delete a book
 // DELETE - Delete a book

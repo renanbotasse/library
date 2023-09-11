@@ -14,10 +14,11 @@
         <h2>FIND A BOOK</h2>
         <div class="col-md mb-3">
           <form action=/library/oneBook method=GET>
-            <input type=text placeholder=TITLE name=title>
-            <input type=text placeholder=AUTHOR name=author>
-            <input type=number placeholder=YEAR name=year>
-            <input type=number placeholder=PAGES name=pages>
+            <input type="text" placeholder="title" name="title" value="<%= typeof title !== 'undefined' ? title : '' %>" />
+            <input type="text" placeholder="author" name="author" value="<%= typeof author !== 'undefined' ? author : '' %>" />
+            <input type="text" placeholder="year" name="year" value="<%= typeof year !== 'undefined' ? year : '' %>" />
+            <input type="text" placeholder="pages" name="pages" value="<%= typeof pages !== 'undefined' ? pages : '' %>" />
+            <div class="col-md mb-3">
         </div>
         <div class="col-md mb-3">
         <button type=”submit” class="btn btn-outline-dark btn-lg btn-block">SUBMIT</button>
