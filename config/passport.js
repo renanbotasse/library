@@ -31,15 +31,15 @@ module.exports = function (passport) {
   });
   // Method for deserializing the 'user'
   passport.deserializeUser(function (id, done) {
-	User.findById(id)
-	  .then((user) => {
-		if (!user) {
-		  return done(null, false);
-		}
-		done(null, user);
-	  })
-	  .catch((err) => {
-		done(err, null);
-	  });
+    User.findById(id)
+      .then((user) => {
+        if (!user) {
+          return done(null, false);
+        }
+        done(null, user);
+      })
+      .catch((err) => {
+        done(err, null);
+      });
   });
 };

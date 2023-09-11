@@ -14,25 +14,28 @@
         <h2>FIND A BOOK</h2>
         <div class="col-md mb-3">
           <form action=/library/oneBook method=GET>
-            <input type="text" placeholder="title" name="title" value="<%= typeof title !== 'undefined' ? title : '' %>"  />
-            <input type="text" placeholder="author" name="author" value="<%= typeof author !== 'undefined' ? author : '' %>"  />
-            <input type="text" placeholder="year" name="year" value="<%= typeof year !== 'undefined' ? year : '' %>"  />
-            <input type="text" placeholder="pages" name="pages" value="<%= typeof pages !== 'undefined' ? pages : '' %>"  />
+            <input type="text" placeholder="title" name="title"
+              value="<%= typeof title !== 'undefined' ? title : '' %>" />
+            <input type="text" placeholder="author" name="author"
+              value="<%= typeof author !== 'undefined' ? author : '' %>" />
+            <input type="text" placeholder="year" name="year" value="<%= typeof year !== 'undefined' ? year : '' %>" />
+            <input type="text" placeholder="pages" name="pages"
+              value="<%= typeof pages !== 'undefined' ? pages : '' %>" />
             <div class="col-md mb-3">
-        </div>
-        <div class="col-md mb-3">
-        <button type=”submit” class="btn btn-outline-dark btn-lg btn-block">SUBMIT</button>
+            </div>
+            <div class="col-md mb-3">
+              <button type=”submit” class="btn btn-outline-dark btn-lg btn-block">SUBMIT</button>
+            </div>
+          </form>
+          <div class="col-md mb-3">
+            <button class="btn btn-outline-dark btn-lg btn-block"><a href="/library/read">LIST ALL</a></button>
           </div>
-        </form>
-        <div class="col-md mb-3">
-          <button class="btn btn-outline-dark btn-lg btn-block"><a href="/library/read">LIST ALL</a></button>
-        </div>
-        <div class="col-md mb-3">
-          <button class="btn btn-outline-dark btn-lg btn-block"><a href="/library/home">BACK</a></button>
+          <div class="col-md mb-3">
+            <button class="btn btn-outline-dark btn-lg btn-block"><a href="/library/home">BACK</a></button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </body>
 
 </html>

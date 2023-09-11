@@ -4,8 +4,8 @@ const router = express.Router();
 // import controller libraryController.js from /controllers
 const libraryController = require("../controllers/libraryController.js");
 
-// importa a propriedade do objeto anónimo de '../config/auth'
-const { ensureAuthenticated } = require('../config/auth');
+// import auth
+const { ensureAuthenticated } = require("../config/auth");
 
 // TEST ('GET') - route (url) to test (http://localhost:5000/library/test)
 router.get("/newBook", ensureAuthenticated, libraryController.newBook);
@@ -33,6 +33,5 @@ router.get("/delete/:id", ensureAuthenticated, libraryController.delete);
 
 // HOME ('GET') - route to get all books (http://localhost:5000/library/home
 router.get("/home", ensureAuthenticated, libraryController.homeLibrary);
-
 
 module.exports = router;

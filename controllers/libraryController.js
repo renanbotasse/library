@@ -163,10 +163,7 @@ exports.update = function (req, res, next) {
     .catch(next);
 };
 
-
 //DELETE - Delete a book
-// DELETE - Delete a book
-// DELETE - Delete a book
 exports.delete = function (req, res, next) {
   // '_id' = id inside DB || 'req.params.id' = return ID
   // You can use the model Book (mongoose) to delete, don't need to create a newBook
