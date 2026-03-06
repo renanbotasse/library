@@ -73,6 +73,11 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
+# Claude Code
+.claude/
+claude.md
+CLAUDE.md
+
 # dotenv environment variable files
 .env
 .env.development.local
@@ -87,6 +92,12 @@ web_modules/
 # Next.js build output
 .next
 out
+
+# Turborepo
+.turbo
+
+# pnpm
+pnpm-lock.yaml
 
 # Nuxt.js build / generate output
 .nuxt

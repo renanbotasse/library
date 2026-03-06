@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" rx="7" fill="#0B0A0F"/>
+
+  <!-- Lock face (gold circle) -->
+  <circle cx="16" cy="14" r="9" fill="#A3824A"/>
+
+  <!-- Keyhole punched out in black -->
+  <!-- View hole -->
+  <circle cx="16" cy="12" r="3.2" fill="#0B0A0F"/>
+  <!-- Key slot -->
+  <path d="M14.2 14 L13.5 22 L18.5 22 L17.8 14 Z" fill="#0B0A0F"/>
+</svg>
