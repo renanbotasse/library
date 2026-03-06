@@ -1,0 +1,6 @@
+{
+  "installCommand": "npm install -g pnpm@9.15.0 && pnpm install",
+  "buildCommand": "pnpm turbo build --filter=@tomekeep/web...",
+  "outputDirectory": "apps/web/.next",
+  "framework": "nextjs"
+}
