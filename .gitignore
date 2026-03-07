@@ -96,8 +96,6 @@ out
 # Turborepo
 .turbo
 
-# pnpm
-pnpm-lock.yaml
 
 # Nuxt.js build / generate output
 .nuxt
