@@ -1,4 +1,5 @@
 {
   "buildCommand": "pnpm turbo build --filter=@tomekeep/web...",
-  "outputDirectory": "apps/web/.next"
+  "outputDirectory": "apps/web/.next",
+  "framework": "nextjs"
 }
